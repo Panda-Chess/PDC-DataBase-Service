@@ -1,10 +1,13 @@
 FROM node:20
 
+ARG GITHUB_TOKEN
+
 WORKDIR /app
 
 COPY . .
 
-WORKDIR /app
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+RUN echo "@panda-chess:registry=https://npm.pkg.github.com" >> .npmrc
 
 RUN yarn install
 
@@ -14,4 +17,4 @@ RUN npm i -g nodemon
 
 EXPOSE 80
 
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "prod" ]
