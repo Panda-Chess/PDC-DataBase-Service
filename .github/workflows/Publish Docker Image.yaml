@@ -14,7 +14,27 @@ env:
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
+  build-test-and-publish:
+    permissions:
+      packages: write
+      contents: write
+      pull-requests: write
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create NPMRC
+        run: |
+            echo "//npm.pkg.github.com/:_authToken=${{secrets.SECRET_TOKEN}}" >> ~/.npmrc
+            echo "@panda-chess:registry=https://npm.pkg.github.com" >> ~/.npmrc
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.7.0
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn test
   build-and-push-image:
+    needs: build-test-and-publish
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
