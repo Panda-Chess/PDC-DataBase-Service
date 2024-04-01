@@ -12,6 +12,7 @@ app.use(cors());
 
 async function startServer() {
     const connectionString = process.env.MONGO_URI;
+    const serverPort = process.env.PORT;
 
     if (!connectionString) {
         throw new Error("MONGO_URI is not defined");
@@ -23,7 +24,7 @@ async function startServer() {
 
     app.use(router);
 
-    app.listen(80, () => {
+    app.listen(serverPort, () => {
         console.log("Server is running on port 80");
     });
 }
