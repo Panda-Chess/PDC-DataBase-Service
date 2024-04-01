@@ -2,6 +2,8 @@ FROM node:20
 
 ARG GITHUB_TOKEN
 
+ENV MONGO_URI="mongodb://localhost:27017/PDC-DB"
+
 WORKDIR /app
 
 COPY . .
