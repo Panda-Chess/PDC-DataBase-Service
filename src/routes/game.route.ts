@@ -24,12 +24,29 @@ router.get("/", async (req, res) => {
     res.json(games);
 });
 
+router.get("/unstarted-games/:gameType", async (req, res) => {
+    const games = await GameModel.find({gameType: req.params.gameType, users: {$size: 1}});
+
+    res.json(games);
+});
+
+router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const game = req.body;
+
+    await GameModel.findByIdAndUpdate(id, game);
+
+    res.status(204).send();
+});
+
 router.post("/", async (req, res) => {
     const {whitePlayer, blackPlayer} = req.body;
+    const gameType = req.body.gameType;
 
     const newGame: Game = {
         users: [whitePlayer, blackPlayer],
         gamePieces: generatePieceSet(),
+        gameType: gameType
     };
 
     const game = new GameModel(newGame);

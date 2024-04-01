@@ -25,7 +25,7 @@ async function startServer() {
     app.use(router);
 
     app.listen(serverPort, () => {
-        console.log("Server is running on port 80");
+        console.log("Server is running on port " + serverPort);
     });
 }
 

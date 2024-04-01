@@ -22,6 +22,7 @@ const pieceSchema = new Schema<Piece>({
 const gameSchema = new Schema<Game>({
     users: [{type: Schema.Types.ObjectId, ref: UserModel, required: true}],
     gamePieces: [{type: pieceSchema, required: true}],
+    gameType: {type: Schema.Types.String, required: true},
 });
 
 
