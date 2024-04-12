@@ -3,7 +3,7 @@ import userRouter from "./user.route";
 import gameRouter from "./game.route";
 
 const router = Router();
-router.use("/user", userRouter);
-router.use("/game", gameRouter);
+router.use("/users", userRouter);
+router.use("/games", gameRouter);
 
 export default router;

@@ -33,6 +33,4 @@ const gameSchema = new Schema<Game>({
     gameType: {type: Schema.Types.String, required: true},
 });
 
-
-
 export const GameModel = model<Game>("Game", gameSchema);
