@@ -40,11 +40,10 @@ router.put("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const {whitePlayer, blackPlayer} = req.body;
     const gameType = req.body.gameType;
 
     const newGame: Game = {
-        users: [whitePlayer, blackPlayer],
+        users: req.body.users,
         gamePieces: generatePieceSet(),
         gameType: gameType
     };
