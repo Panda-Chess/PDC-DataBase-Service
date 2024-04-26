@@ -25,6 +25,7 @@ const userInGameSchema = new Schema<UserInGame>({
     color: {type: Schema.Types.String, required: true},
     user: {type: Schema.Types.ObjectId, ref: UserModel, required: true},
     gamePoints: {type: Schema.Types.Number, required: true},
+    status: {type: Schema.Types.String, required: true}
 });
 
 const gameSchema = new Schema<Game>({
