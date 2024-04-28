@@ -8,6 +8,7 @@ import {
     getUserByID, 
     modifyGame 
 } from "../logic";
+import { Game } from "@panda-chess/pdc-core";
 
 const router = Router();
 
@@ -48,9 +49,9 @@ router.get("/unstarted-games/:gameType", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-    await modifyGame(req.params.id, req.body);
+    const game: Game = await modifyGame(req.params.id, req.body);
 
-    res.status(204).send();
+    res.json(game).status(204).send();
 });
 
 router.post("/", async (req, res) => {
