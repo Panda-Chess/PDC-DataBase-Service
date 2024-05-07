@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createUser, getUserByID, getUsers } from "../logic";
+import { tryLogin } from "../logic/user.logic";
 
 const router = Router();
 
@@ -17,6 +18,16 @@ router.get("/", async (req, res) => {
     const users = await getUsers();
 
     res.json(users);
+});
+
+router.get("/try-login", async (req, res) => {
+    const user = await tryLogin(req.body.email, req.body.password);
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
 });
 
 router.post("/", async (req, res) => {

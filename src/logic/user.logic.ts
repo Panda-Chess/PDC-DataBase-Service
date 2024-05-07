@@ -7,7 +7,7 @@ export const getUserByID = async (id: string): Promise<User | null> => {
     return user;
 };
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise<User[]> => {
     const users = await UserModel.find();
 
     return users;
@@ -29,4 +29,10 @@ export const createUser = async (user: User) => {
 
 export const deleteUser = async (id: string) => {
     await UserModel.findByIdAndDelete(id);
+};
+
+export const tryLogin = async (email: string, password: string) => {
+    const user = await UserModel.findOne({ email, password});
+
+    return user;
 };
