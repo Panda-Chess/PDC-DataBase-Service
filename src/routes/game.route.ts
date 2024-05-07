@@ -51,7 +51,7 @@ router.get("/unstarted-games/:gameType", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const game: Game = await modifyGame(req.params.id, req.body);
 
-    res.status(204).json(game);
+    res.status(200).json(game);
 });
 
 router.post("/", async (req, res) => {
