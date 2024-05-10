@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createUser, getUserByID, getUsers } from "../logic";
-import { tryLogin } from "../logic/user.logic";
+import { deleteUser, tryLogin } from "../logic/user.logic";
 
 const router = Router();
 
@@ -30,6 +30,12 @@ router.post("/", async (req, res) => {
     const user = await createUser(req.body);
 
     res.status(201).json(user);
+});
+
+router.delete("/:id", async (req, res) => {
+    deleteUser(req.params.id);
+
+    res.status(204).send();
 });
 
 export default router;
