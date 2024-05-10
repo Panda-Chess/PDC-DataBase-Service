@@ -20,12 +20,8 @@ router.get("/", async (req, res) => {
     res.json(users);
 });
 
-router.get("/try-login", async (req, res) => {
+router.post("/try-login", async (req, res) => {
     const user = await tryLogin(req.body.email, req.body.password);
-
-    if (!user) {
-        return res.status(404).json({ message: "User not found" });
-    }
 
     res.json(user);
 });
