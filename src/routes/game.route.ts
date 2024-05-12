@@ -32,7 +32,7 @@ router.get("/game-by-user/:userId", async (req, res) => {
     const game = await getGameByUser(req.params.userId);
 
     if (!game) {
-        return res.status(404).json({ message: "Game not found" });
+        return res.json(null);
     }
 
     res.json(game);
