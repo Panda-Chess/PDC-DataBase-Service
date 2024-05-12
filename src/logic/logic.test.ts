@@ -3,7 +3,7 @@ import { Game, User, generatePieceSet } from "@panda-chess/pdc-core";
 import { createGame, createUser, deleteGame, getGameByUser, getUnstartedGames, modifyGame,  } from "."
 import { connectToDatabase } from "../databaseConnector";
 import dotenv from "dotenv";
-import { PlayerStatus } from "@panda-chess/pdc-core/dist/utils/playerStatus";
+import { UserStatus } from "@panda-chess/pdc-core/dist/utils/userStatus";
 import { deleteUser, getUserByID } from "./user.logic";
 
 describe("Logic", () => {    
@@ -56,7 +56,7 @@ describe("Logic", () => {
                     color: "white", 
                     gamePoints: 0, 
                     socketId: "testSocket1", 
-                    status: PlayerStatus.waiting 
+                    status: UserStatus.waiting 
                 },
             ],
             gamePieces: generatePieceSet(),
@@ -86,14 +86,14 @@ describe("Logic", () => {
                     color: "white",
                     gamePoints: 0,
                     socketId: "testSocket1",
-                    status: PlayerStatus.online
+                    status: UserStatus.online
                 },
                 {
                     user: testUser2, 
                     color: "black", 
                     gamePoints: 0, 
                     socketId: "testSocket2", 
-                    status: PlayerStatus.online
+                    status: UserStatus.online
                 }
             ]
         };

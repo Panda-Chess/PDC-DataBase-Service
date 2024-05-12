@@ -9,5 +9,7 @@ export {
 export {
     getUserByID, 
     getUsers,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser,
 } from "./user.logic";

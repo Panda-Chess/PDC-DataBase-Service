@@ -32,10 +32,10 @@ router.get("/game-by-user/:userId", async (req, res) => {
     const game = await getGameByUser(req.params.userId);
 
     if (!game) {
-        return res.json(null);
+        return res.json(null).send();
     }
 
-    res.json(game);
+    res.json(game).send();
 });
 
 router.get("/unstarted-games/:gameType", async (req, res) => {

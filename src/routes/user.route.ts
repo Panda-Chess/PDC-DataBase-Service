@@ -32,6 +32,12 @@ router.post("/", async (req, res) => {
     res.status(201).json(user);
 });
 
+router.put("/", async (req, res) => {
+    await createUser(req.body);
+
+    res.status(204).send();
+});
+
 router.delete("/:id", async (req, res) => {
     deleteUser(req.params.id);
 
