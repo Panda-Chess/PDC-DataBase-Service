@@ -21,6 +21,7 @@ describe("Logic", () => {
             name: "testUser1",
             email: "testUser1@gmail.com",
             password: "testUser1",
+            status: "online",
             draws: 0,
             losses: 0,
             wins: 0,
@@ -37,6 +38,7 @@ describe("Logic", () => {
             name: "testUser2",
             email: "testUser2@gmail.com",
             password: "testUser2",
+            status: "online",
             draws: 0,
             losses: 0,
             wins: 0,
@@ -59,6 +61,7 @@ describe("Logic", () => {
                     status: UserStatus.waiting 
                 },
             ],
+            currentColor: "white",
             gamePieces: generatePieceSet(),
             gameType: "casual",
         };
@@ -80,6 +83,7 @@ describe("Logic", () => {
         const modifiedGame: Game = {
             gamePieces: testGame.gamePieces,
             gameType: testGame.gameType,
+            currentColor: "white",
             users: [
                 {
                     user: testUser1,
