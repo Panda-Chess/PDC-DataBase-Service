@@ -28,7 +28,7 @@ export const createUser = async (user: User) => {
 };
 
 export const updateUser = async (user: User) => {
-    await UserModel.findByIdAndUpdate(user._id, user);
+    return await UserModel.findByIdAndUpdate(user._id, user);
 };
 
 export const deleteUser = async (id: string) => {

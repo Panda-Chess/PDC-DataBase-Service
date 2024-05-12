@@ -33,9 +33,9 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-    await createUser(req.body);
+    const user = await createUser(req.body);
 
-    res.status(204).send();
+    res.status(204).json(user);
 });
 
 router.delete("/:id", async (req, res) => {
