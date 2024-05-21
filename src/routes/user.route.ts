@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createUser, getUserByID, getUsers } from "../logic";
-import { deleteUser, tryLogin } from "../logic/user.logic";
+import { deleteUser, tryLogin, updateUser } from "../logic/user.logic";
 
 const router = Router();
 
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-    const user = await createUser(req.body);
+    const user = await updateUser(req.body);
 
     res.status(204).json(user);
 });

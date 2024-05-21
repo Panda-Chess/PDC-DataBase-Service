@@ -5,6 +5,7 @@ export const userSchema = new Schema<User>({
     name: {type: String, required: true},
     email: {type: String, required: true},
     password: {type: String, required: true},
+    status: {type: String, required: true},
     draws: {type: Number, required: true},
     losses: {type: Number, required: true},
     wins: {type: Number, required: true},
