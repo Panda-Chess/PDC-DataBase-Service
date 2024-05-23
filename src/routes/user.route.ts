@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { createUser, getUserByID, getUsers } from "../logic";
-import { deleteUser, tryLogin, updateUser } from "../logic/user.logic";
+import {
+    deleteUser, getOnlineUsers, tryLogin, updateUser 
+} from "../logic/user.logic";
 
 const router = Router();
 
@@ -42,6 +44,12 @@ router.delete("/:id", async (req, res) => {
     await deleteUser(req.params.id);
 
     res.status(204).send();
+});
+
+router.get("/online", async (req, res) => {
+    const users = await getOnlineUsers();
+
+    res.json(users);
 });
 
 export default router;

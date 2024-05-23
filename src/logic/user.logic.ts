@@ -15,10 +15,10 @@ export const getUsers = async (): Promise<User[]> => {
 
 export const createUser = async (user: User) => {
     const newUser = new UserModel({
-        ...user, 
-        score: 0, 
-        wins: 0, 
-        losses: 0, 
+        ...user,
+        score: 0,
+        wins: 0,
+        losses: 0,
         draws: 0
     });
 
@@ -36,7 +36,13 @@ export const deleteUser = async (id: string) => {
 };
 
 export const tryLogin = async (email: string, password: string) => {
-    const user = await UserModel.findOne({ email, password});
+    const user = await UserModel.findOne({ email, password });
 
     return user;
+};
+
+export const getOnlineUsers = async () => {
+    const users = await UserModel.find({ status: "online" });
+
+    return users;
 };
