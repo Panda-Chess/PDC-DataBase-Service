@@ -39,7 +39,7 @@ router.put("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-    deleteUser(req.params.id);
+    await deleteUser(req.params.id);
 
     res.status(204).send();
 });
