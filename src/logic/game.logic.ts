@@ -7,6 +7,12 @@ export const getGames = async (): Promise<Game[]> => {
     return games;
 };
 
+export const getGameById = async (id: string): Promise<Game | null> => {
+    const game = await GameModel.findById(id);
+
+    return game || null;
+};
+
 export const getGameByUser = async (user1Id: string, user2Id?: string): Promise<Game | null> => {
     const game = await GameModel.findOne({ users: { $elemMatch: { user: { $in: [user1Id, user2Id] } } } });
 

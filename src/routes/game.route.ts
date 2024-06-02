@@ -5,15 +5,15 @@ import {
     getGameByUser,
     getGames,
     getUnstartedGames,
-    getUserByID,
     modifyGame
 } from "../logic";
 import { Game } from "@panda-chess/pdc-core";
+import { getGameById } from "../logic/game.logic";
 
 const router = Router();
 
 router.get("/game/:id", async (req, res) => {
-    const game = await getUserByID(req.params.id);
+    const game = await getGameById(req.params.id);
 
     if (!game) {
         return res.status(404).json({ message: "Game not found" });

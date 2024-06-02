@@ -31,6 +31,7 @@ const gameSchema = new Schema<Game>({
     users: [{ type: userInGameSchema, required: true }],
     gamePieces: [{ type: pieceSchema, required: true }],
     gameType: { type: Schema.Types.String, required: true },
+    currentColor: { type: Schema.Types.String, required: true },
 });
 
 export const GameModel = model<Game>("Game", gameSchema);
