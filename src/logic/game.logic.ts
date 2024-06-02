@@ -7,16 +7,16 @@ export const getGames = async (): Promise<Game[]> => {
     return games;
 };
 
-export const getGameByUser = async (userId: string): Promise<Game | null> => {
-    const game = await GameModel.findOne({users: {$elemMatch: {user: userId}}});
+export const getGameByUser = async (user1Id: string, user2Id?: string): Promise<Game | null> => {
+    const game = await GameModel.findOne({ users: { $elemMatch: { user: { $in: [user1Id, user2Id] } } } });
 
-    const gameWithPlayers = await game?.populate({path: "users.user", model: UserModel});
+    const gameWithPlayers = await game?.populate({ path: "users.user", model: UserModel });
 
     return gameWithPlayers || null;
 };
 
 export const getUnstartedGames = async (gameType: string): Promise<Game[]> => {
-    const games = await GameModel.find({gameType: gameType, users: {$size: 1}});
+    const games = await GameModel.find({ gameType: gameType, users: { $size: 1 } });
 
     return games;
 };
@@ -30,11 +30,11 @@ export const modifyGame = async (id: string, game: Game): Promise<Game> => {
 };
 
 export const createGame = async (game: Game): Promise<Game> => {
-    const newGame = new GameModel({...game,  gamePieces: generatePieceSet()});
+    const newGame = new GameModel({ ...game, gamePieces: generatePieceSet() });
 
     await newGame.save();
 
-    return newGame;
+    return await newGame.populate("users.user");
 };
 
 export const deleteGame = async (id: string): Promise<void> => {

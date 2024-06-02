@@ -1,5 +1,6 @@
 import { User } from "@panda-chess/pdc-core";
 import { UserModel } from "../models";
+import { playerDoesNotWantToPlay } from "./wantsToPlay.logic";
 
 export const getUserByID = async (id: string): Promise<User | null> => {
     const user = await UserModel.findById(id);
@@ -32,6 +33,8 @@ export const updateUser = async (user: User) => {
 };
 
 export const deleteUser = async (id: string) => {
+    await playerDoesNotWantToPlay(id);
+
     await UserModel.findByIdAndDelete(id);
 };
 

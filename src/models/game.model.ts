@@ -1,7 +1,7 @@
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 import {
-    Game, 
-    Piece, 
+    Game,
+    Piece,
     Position,
     UserInGame
 } from "@panda-chess/pdc-core";
@@ -21,17 +21,16 @@ const pieceSchema = new Schema<Piece>({
 });
 
 const userInGameSchema = new Schema<UserInGame>({
-    socketId: {type: Schema.Types.String, required: true},
-    color: {type: Schema.Types.String, required: true},
-    user: {type: Schema.Types.ObjectId, ref: UserModel, required: true},
-    gamePoints: {type: Schema.Types.Number, required: true},
-    status: {type: Schema.Types.String, required: true}
+    color: { type: Schema.Types.String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
+    gamePoints: { type: Schema.Types.Number, required: true },
+    status: { type: Schema.Types.String, required: true }
 });
 
 const gameSchema = new Schema<Game>({
-    users: [{type: userInGameSchema, required: true}],
-    gamePieces: [{type: pieceSchema, required: true}],
-    gameType: {type: Schema.Types.String, required: true},
+    users: [{ type: userInGameSchema, required: true }],
+    gamePieces: [{ type: pieceSchema, required: true }],
+    gameType: { type: Schema.Types.String, required: true },
 });
 
 export const GameModel = model<Game>("Game", gameSchema);

@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { createUser, getUserByID, getUsers } from "../logic";
 import {
-    deleteUser, getOnlineUsers, tryLogin, updateUser 
+    deleteUser, getOnlineUsers, tryLogin, updateUser
 } from "../logic/user.logic";
 
 const router = Router();
 
-router.get("/:id", async (req, res) => {
+router.get("/user/:id", async (req, res) => {
     const user = await getUserByID(req.params.id);
 
     if (!user) {
@@ -49,7 +49,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/online", async (req, res) => {
     const users = await getOnlineUsers();
 
-    res.json(users);
+    res.json(users).send();
 });
 
 export default router;

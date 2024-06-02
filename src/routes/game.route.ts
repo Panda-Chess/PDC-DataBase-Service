@@ -1,18 +1,18 @@
 import { Router } from "express";
-import { 
-    createGame, 
-    deleteGame, 
-    getGameByUser, 
-    getGames, 
-    getUnstartedGames, 
-    getUserByID, 
-    modifyGame 
+import {
+    createGame,
+    deleteGame,
+    getGameByUser,
+    getGames,
+    getUnstartedGames,
+    getUserByID,
+    modifyGame
 } from "../logic";
 import { Game } from "@panda-chess/pdc-core";
 
 const router = Router();
 
-router.get("/:id", async (req, res) => {
+router.get("/game/:id", async (req, res) => {
     const game = await getUserByID(req.params.id);
 
     if (!game) {
@@ -28,8 +28,8 @@ router.get("/", async (req, res) => {
     res.json(games);
 });
 
-router.get("/game-by-user/:userId", async (req, res) => {
-    const game = await getGameByUser(req.params.userId);
+router.get("/game-by-users/", async (req, res) => {
+    const game = await getGameByUser(req.query.user1Id as string, req.query.user2Id as string);
 
     if (!game) {
         return res.json(null).send();
