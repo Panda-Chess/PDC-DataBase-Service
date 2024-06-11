@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "nodemon 'src/index.ts'",
-    "prod": "nodemon 'dist/index.js'",
+    "prod": "node 'dist/index.js'",
     "build": "tsc",
     "push": "yarn lint && yarn test && git add . && git-cz && git pull && git push",
     "semantic-release": "semantic-release",

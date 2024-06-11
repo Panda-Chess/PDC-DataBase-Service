@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database-service
+  template:
+    metadata:
+      labels:
+        app: database-service
+    spec:
+      imagePullSecrets:
+        - name: githubtoken
+      containers:
+      - name: database-service
+        image: ghcr.io/panda-chess/pdc-database-service:main
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URI
+          value: mongodb://mongodb:27017/PDC-DB
