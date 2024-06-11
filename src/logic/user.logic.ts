@@ -8,6 +8,12 @@ export const getUserByID = async (id: string): Promise<User | null> => {
     return user;
 };
 
+export const getUserByEmail = async (email: string): Promise<User | null> => {
+    const user = await UserModel.findOne({ email });
+
+    return user;
+};
+
 export const getUsers = async (): Promise<User[]> => {
     const users = await UserModel.find();
 
